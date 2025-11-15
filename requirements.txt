@@ -1,7 +1,6 @@
-streamlit
+
 pandas
-numpy
+dash
 plotly
-openpyxl
+wordcloud
 scikit-learn
-matplotlib
