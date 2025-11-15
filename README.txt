@@ -1,14 +1,19 @@
 
-INSTRUCCIONES DE USO:
+# Dashboard Kohlberg – Streamlit
+
+## Instrucciones:
 
 1. Instalar dependencias:
-   pip install pandas dash plotly wordcloud scikit-learn
+   pip install -r requirements.txt
 
-2. Colocar tu archivo Excel real dentro de /data bajo el nombre:
-   BASE_DE_DATOS.xlsx
+2. Ejecutar:
+   streamlit run app.py
 
-3. Ejecutar:
-   python dashboard_kohlberg.py
+3. Subir archivo Excel desde la interfaz.
 
-4. Se abrirá el dashboard en:
-   http://127.0.0.1:8050
+Incluye:
+- Barras
+- Histogramas
+- Dispersión
+- Boxplot
+- Heatmap
