@@ -1,1 +1,1 @@
-# Kohlberg Streamlit Dashboard – Versión Final Premium
+# Kohlberg Premium Dashboard – Versión Final Integrada
