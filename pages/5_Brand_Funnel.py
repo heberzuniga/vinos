@@ -1,5 +1,10 @@
+
 import streamlit as st
 
-st.title("🍷 Brand Funnel")
+st.title("🍷 Brand Funnel Automático")
 
-st.warning("El Brand Funnel aparecerá cuando se cargue el archivo derivado correspondiente.")
+if "brand_funnel" not in st.session_state:
+    st.warning("Debe cargar el archivo Excel.")
+    st.stop()
+
+st.dataframe(st.session_state["brand_funnel"])
