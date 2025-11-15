@@ -4,16 +4,21 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.manifold import MDS
+import plotly.express as px
 
 st.set_page_config(page_title="Kohlberg Dashboard", layout="wide")
-st.title("📊 Investigación de Mercado – Vinos Kohlberg (Procesamiento Automático)")
 
-uploaded = st.file_uploader("📁 Subir Excel original", type=["xlsx"])
+st.markdown("<h1 style='text-align:center;color:#A40518;'>📊 Investigación de Mercado – Vinos Kohlberg</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align:center;color:#CCCCCC;'>Procesamiento Automático con IA + Visuales Premium</h3>", unsafe_allow_html=True)
+
+uploaded = st.file_uploader("📁 Subir Excel original", type=["xlsx"],
+                            help="Sube el archivo original para procesar todo automáticamente.")
 
 if uploaded:
     df = pd.read_excel(uploaded)
 
-    st.success("Archivo cargado correctamente.")
+    st.success("✔ Archivo cargado correctamente.")
+    st.write("### Vista previa del dataset:")
     st.dataframe(df.head())
 
     # ---- RECODIFICACIÓN ----
@@ -27,12 +32,12 @@ if uploaded:
         if c in df.columns:
             df[c+"_rec"] = df[c].map(marca_map)
 
-    # ---- P9 RECODIFICACIÓN ----
+    # ---- P9 ----
     p9_cols=[c for c in df.columns if c.startswith("P9")]
     for c in p9_cols:
         df[c+"_rec"]=df[c].map(marca_map)
 
-    # ---- BRAND FUNNEL ----
+    # ---- Brand Funnel ----
     brands=list(marca_map.values())
     awareness={}
     for b in brands:

@@ -5,10 +5,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 import plotly.express as px
 
-st.title("🧠 Segmentación Automática")
+st.title("🧠 Segmentación Automática – Visual Premium")
 
 if "df" not in st.session_state:
-    st.warning("Suba archivo Excel.")
+    st.warning("Suba archivo primero.")
     st.stop()
 
 df = st.session_state["df"]
@@ -23,7 +23,7 @@ X = StandardScaler().fit_transform(seg_df)
 labels = KMeans(n_clusters=5, random_state=42).fit_predict(X)
 
 df["Segmento"] = labels
-st.dataframe(df[["Segmento"]])
 
-fig = px.histogram(df, x="Segmento", title="Distribución de Segmentos")
+fig = px.histogram(df, x="Segmento", color="Segmento",
+                   title="Distribución de Segmentos (IA)")
 st.plotly_chart(fig)

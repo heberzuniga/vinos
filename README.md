@@ -1,1 +1,1 @@
-# Auto-Procesamiento Kohlberg Streamlit
+# Kohlberg Streamlit Dashboard – Versión Final Premium
