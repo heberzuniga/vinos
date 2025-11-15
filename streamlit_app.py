@@ -11,13 +11,13 @@ st.set_page_config(page_title="Kohlberg Insights", layout="wide")
 st.markdown("""
 <div style='text-align:center; padding:40px;'>
     <h1 style='color:#A40518; font-size:50px;'>🍷 Insights de Mercado – Vinos Kohlberg</h1>
-    <h3 style='color:#CCCCCC;'>Dashboard Profesional con Procesamiento Automático + IA</h3>
+    <h3 style='color:#CCCCCC;'>Dashboard Premium con IA y Visualizaciones Avanzadas</h3>
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown("---")
 
-st.write("### 📁 Cargar Excel Original de la Encuesta")
+st.write("### 📁 Subir Base de Datos (Excel Original)")
 
 uploaded = st.file_uploader("Sube tu archivo Excel:", type=["xlsx"])
 
@@ -33,6 +33,7 @@ if uploaded:
         "P.1.2 Cúal la tercer marca ?"
     ]
 
+    # Recodificación
     for c in cols_noto:
         if c in df.columns:
             df[c+"_rec"]=df[c].map(marca_map)
@@ -41,6 +42,7 @@ if uploaded:
     for c in p9_cols:
         df[c+"_rec"]=df[c].map(marca_map)
 
+    # Brand Funnel
     brands=list(marca_map.values())
     awareness={}
     for b in brands:
@@ -60,8 +62,16 @@ if uploaded:
     st.session_state["df"]=df
     st.session_state["brand_funnel"]=bf
 
+    # Procesado descargable
+    st.download_button(
+        "⬇️ Descargar Excel Procesado",
+        df.to_csv(index=False).encode("utf-8"),
+        "base_procesada.csv",
+        "text/csv"
+    )
+
     st.write("### Vista previa:")
     st.dataframe(df.head())
 
 else:
-    st.warning("Por favor suba el archivo para comenzar.")
+    st.warning("Por favor sube el archivo para comenzar.")
